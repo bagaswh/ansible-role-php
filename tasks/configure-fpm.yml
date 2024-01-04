@@ -33,7 +33,7 @@
     mode: 0755
   when: php_fpm_pool_conf_path_dir_stat.stat.islnk is not defined
 
-- name: Create fpm pools.
+- name: Create fpm pools
   template:
     src: "{{ item.pool_template | default('www.conf.j2', true) }}"
     dest: "{{ php_fpm_pool_conf_path | dirname }}/{{ item.pool_name }}.conf"

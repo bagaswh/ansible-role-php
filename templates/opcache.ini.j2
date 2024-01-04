@@ -1,3 +1,16 @@
+{% if php_opcache is defined and php_opcache is mapping  %}
+
+    {% for item in (php_opcache | dict2items) %}
+
+        {% if item.key != "zend_extension" %}
+opcache.{{ item.key }}={{ item.value }}
+        {% else %}
+{{ item.key }}={{ item.value }}
+        {% endif %}
+
+    {% endfor %}
+
+{% else %}
 zend_extension={{ php_opcache_zend_extension }}
 opcache.enable={{ php_opcache_enable }}
 opcache.enable_cli={{ php_opcache_enable_cli }}
@@ -9,6 +22,12 @@ opcache.validate_timestamps={{ php_opcache_validate_timestamps }}
 opcache.revalidate_path={{ php_opcache_revalidate_path }}
 opcache.revalidate_freq={{ php_opcache_revalidate_freq }}
 opcache.max_file_size={{ php_opcache_max_file_size }}
+opcache.file_cache={{ php_opcache_file_cache }}
+opcache.file_cache_only={{ php_opcache_file_cache_only }}
+opcache.file_cache_consistency_checks={{ php_opcache_file_cache_consistency_checks }}
+opcache.file_cache_fallback={{ php_opcache_file_cache_fallback }}
 {% if php_opcache_blacklist_filename != '' %}
 opcache.blacklist_filename={{ php_opcache_blacklist_filename }}
+{% endif %}
+
 {% endif %}

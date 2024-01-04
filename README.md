@@ -71,7 +71,6 @@ Control over the fpm daemon's state; set these to `stopped` and `false` if you w
 
 The handler restarts PHP-FPM by default. Setting the value to `reloaded` will reload the service, intead of restarting it.
 
-
     php_fpm_pools:
       - pool_name: www
         pool_template: www.conf.j2
@@ -160,7 +159,7 @@ Whether to enable APCu. Other APCu variables will be ineffective if this is set 
     php_apc_shm_size: "96M"
     php_apc_enable_cli: "0"
 
-APCu ini directives that are often customized on a system. Set the `php_apc_shm_size` so it will hold all cache entries in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP *dramatically*).
+APCu ini directives that are often customized on a system. Set the `php_apc_shm_size` so it will hold all cache entries in memory with a little overhead (fragmentation or APC running out of memory will slow down PHP _dramatically_).
 
     php_apc_conf_filename: [platform-specific]
 
@@ -170,14 +169,14 @@ The platform-specific APC configuration filename. Generally the default should w
 
 If you use APC, you will need to make sure APC is installed (it is installed by default, but if you customize the `php_packages` list, you need to include APC in the list):
 
-  - *On RHEL/CentOS systems*: Make sure `php-pecl-apcu` is in the list of `php_packages`.
-  - *On Debian/Ubuntu systems*: Make sure `php-apcu` is in the list of `php_packages`.
+- _On RHEL/CentOS systems_: Make sure `php-pecl-apcu` is in the list of `php_packages`.
+- _On Debian/Ubuntu systems_: Make sure `php-apcu` is in the list of `php_packages`.
 
 ### Installing from Source
 
 If you need a specific version of PHP, or would like to test the latest (e.g. master) version of PHP, there's a good chance there's no suitable package already available in your platform's package manager. In these cases, you may choose to install PHP from source by compiling it directly.
 
-Note that source compilation takes *much* longer than installing from packages (PHP HEAD takes 5+ minutes to compile on a modern quad-core computer, just as a point of reference).
+Note that source compilation takes _much_ longer than installing from packages (PHP HEAD takes 5+ minutes to compile on a modern quad-core computer, just as a point of reference).
 
     php_install_from_source: false
 
@@ -206,9 +205,9 @@ The `./configure` command that will build the Makefile to be used for PHP compil
 
 A few other notes/caveats for specific configurations:
 
-  - **Apache with `mpm_prefork`**: If you're using Apache with prefork as a webserver for PHP, you will need to make sure `apxs2` is available on your system (e.g. by installing `apache2-prefork-dev` in Ubuntu), and you will need to make sure the option `--with-apxs2` is defined in `php_source_configure_command`. Finally, you will need to make sure the `mpm_prefork` module is loaded instead of `mpm_worker` or `mpm_event`, and likely add a `phpX.conf` (where `X` is the major version of PHP) configuration file to the Apache module config folder with contents like [`php7.conf`](https://gist.github.com/geerlingguy/5ae5445f28e71264e8c1).
-  - **Apache with `mpm_event` or `mpm_worker`**: If you're using Apache with event or worker as a webserver for PHP, you will need to compile PHP with FPM. Make sure the option `--enable-fpm` is defined in `php_source_configure_command`. You'll also need to make sure Apache's support for CGI and event is installed (e.g. by installing `apache2-mpm-event` and `libapache2-mod-fastcgi`) and the `mpm_event` module is loaded.
-  - **Nginx**: If you're using Nginx as a webserver for PHP, you will need to compile PHP with FPM. Make sure the option `--enable-fpm` is defined in `php_source_configure_command`.
+- **Apache with `mpm_prefork`**: If you're using Apache with prefork as a webserver for PHP, you will need to make sure `apxs2` is available on your system (e.g. by installing `apache2-prefork-dev` in Ubuntu), and you will need to make sure the option `--with-apxs2` is defined in `php_source_configure_command`. Finally, you will need to make sure the `mpm_prefork` module is loaded instead of `mpm_worker` or `mpm_event`, and likely add a `phpX.conf` (where `X` is the major version of PHP) configuration file to the Apache module config folder with contents like [`php7.conf`](https://gist.github.com/geerlingguy/5ae5445f28e71264e8c1).
+- **Apache with `mpm_event` or `mpm_worker`**: If you're using Apache with event or worker as a webserver for PHP, you will need to compile PHP with FPM. Make sure the option `--enable-fpm` is defined in `php_source_configure_command`. You'll also need to make sure Apache's support for CGI and event is installed (e.g. by installing `apache2-mpm-event` and `libapache2-mod-fastcgi`) and the `mpm_event` module is loaded.
+- **Nginx**: If you're using Nginx as a webserver for PHP, you will need to compile PHP with FPM. Make sure the option `--enable-fpm` is defined in `php_source_configure_command`.
 
 ## Dependencies
 
@@ -216,13 +215,13 @@ None.
 
 ## Example Playbook
 
-    - hosts: webservers
+    - hosts: "{{ variable_host }}"
       vars_files:
         - vars/main.yml
       roles:
         - { role: geerlingguy.php }
 
-*Inside `vars/main.yml`*:
+_Inside `vars/main.yml`_:
 
     php_memory_limit: "128M"
     php_max_execution_time: "90"

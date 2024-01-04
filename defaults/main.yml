@@ -62,7 +62,29 @@ php_opcache_validate_timestamps: "1"
 php_opcache_revalidate_path: "0"
 php_opcache_revalidate_freq: "2"
 php_opcache_max_file_size: "0"
+php_opcache_file_cache: ""
+php_opcache_file_cache_only: "0"
+php_opcache_file_cache_consistency_checks: "1"
+php_opcache_file_cache_fallback: "1"
 php_opcache_blacklist_filename: ""
+
+php_opcache:
+  zend_extension: "opcache.so"
+  enable: "1"
+  enable_cli: "0"
+  memory_consumption: "96"
+  interned_strings_buffer: "16"
+  max_accelerated_files: "4096"
+  max_wasted_percentage: "5"
+  validate_timestamps: "1"
+  revalidate_path: "0"
+  revalidate_freq: "2"
+  max_file_size: "0"
+  file_cache: ""
+  file_cache_only: "0"
+  file_cache_consistency_checks: "1"
+  file_cache_fallback: "1"
+  blacklist_filename: ""
 
 # APCu settings.
 php_enable_apc: true
@@ -100,7 +122,7 @@ php_session_gc_probability: 1
 php_session_gc_divisor: 1000
 php_session_gc_maxlifetime: 1440
 php_session_save_handler: files
-php_session_save_path: ''
+php_session_save_path: ""
 
 php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
 php_display_errors: "Off"
